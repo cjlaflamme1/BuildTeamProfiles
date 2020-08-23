@@ -5,7 +5,6 @@ const inquirer = require("inquirer");
 const questions = require('./lib/questions');
 const path = require("path");
 const fs = require("fs");
-const employeeGenerator = require('./lib/employeeGenerator');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
@@ -13,9 +12,38 @@ const render = require("./lib/htmlRenderer");
 
 const employeeList = [];
 
-inquirer.prompt(questions).then(function (answers) {
-    console.log(answers);
+const employeeRender = ({name, id, email, employeeRole, github, officeNumber, school}) => {
+    switch(employeeRole) {
+        case "Engineer":
+            return new Engineer(name, id, email, github);
+            break;
+        case "Intern":
+            return new Intern(name, id, email, school);
+            break;
+        case "Manager":
+            return new Manager(name, id, email, officeNumber);
+            break;
+    }
+};
+inquirer.prompt(questions, employeeRender).then(function(promise) {
+    employeeList.push(promise);
+    console.log(employeeList);
 });
+
+// inquirer.prompt(questions).then(function ({name, id, email, employeeRole, github, officeNumber, school}) {
+//     switch(employeeRole) {
+//         case "Engineer":
+//             employeeList.push(new Engineer(name, id, email, github));
+//             break;
+//         case "Intern":
+//             employeeList.push(new Intern(name, id, email, school));
+//             break;
+//         case "Manager":
+//             employeeList.push(new Manager(name, id, email, officeNumber));
+//             break;
+//     }
+//     console.log(employeeList);
+// });
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
