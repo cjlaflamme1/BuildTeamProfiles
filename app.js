@@ -39,11 +39,13 @@ const addAnotherEmployee = () => {
         if(val.newEntry) {
             employeeRender();
         } else {
-            
-            return;
+            fs.writeFile("index.html", render(employeeList), (err) => {
+                if (err) throw err;
+                console.log('The html page has been rendered!');
+            } )
         }
     })
-}
+};
 
 
 // const employeeList = [];
