@@ -9,28 +9,63 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
-
 const employeeList = [];
-
-const employeeRender = ({name, id, email, employeeRole, github, officeNumber, school}) => {
-    switch(employeeRole) {
-        case "Engineer":
-            return new Engineer(name, id, email, github);
-            break;
-        case "Intern":
-            return new Intern(name, id, email, school);
-            break;
-        case "Manager":
-            return new Manager(name, id, email, officeNumber);
-            break;
-    }
+const employeeRender = async () => {
+    await inquirer.prompt(questions).then(({name, id, email, employeeRole, github, officeNumber, school}) => {
+        switch(employeeRole) {
+                    case "Engineer":
+                        employeeList.push(new Engineer(name, id, email, github));
+                        break;
+                    case "Intern":
+                        employeeList.push(new Intern(name, id, email, school));
+                        break;
+                    case "Manager":
+                        employeeList.push(new Manager(name, id, email, officeNumber));
+                        break;
+                }
+        console.log(employeeList);
+    })
+    addAnotherEmployee();
 };
-inquirer.prompt(questions, employeeRender).then(function(promise) {
-    console.log(promise);
-    employeeList.push(promise);
-    console.log(employeeList);
-});
+employeeRender();
+const addAnotherEmployee = () => {
+    inquirer.prompt({
+        type: "confirm", 
+        message: "Would you like to add another employee?", 
+        name: "newEntry",
+        default: true
+    }).then(val => {
+        console.log(val);
+        if(val.newEntry) {
+            employeeRender();
+        } else {
+            
+            return;
+        }
+    })
+}
+
+
+// const employeeList = [];
+
+// const employeeRender = ({name, id, email, employeeRole, github, officeNumber, school}) => {
+//     switch(employeeRole) {
+//         case "Engineer":
+//             return new Engineer(name, id, email, github);
+//             break;
+//         case "Intern":
+//             return new Intern(name, id, email, school);
+//             break;
+//         case "Manager":
+//             return new Manager(name, id, email, officeNumber);
+//             break;
+//     }
+// };
+// inquirer.prompt(questions, employeeRender).then(function(promise) {
+//     console.log(promise);
+//     employeeList.push(promise);
+//     console.log(employeeList);
+// });
 
 
 
