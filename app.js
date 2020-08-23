@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+
 const employeeList = [];
 
 const employeeRender = ({name, id, email, employeeRole, github, officeNumber, school}) => {
@@ -26,10 +27,14 @@ const employeeRender = ({name, id, email, employeeRole, github, officeNumber, sc
     }
 };
 inquirer.prompt(questions, employeeRender).then(function(promise) {
+    console.log(promise);
     employeeList.push(promise);
     console.log(employeeList);
 });
 
+
+
+// First effort in creating content generation
 // inquirer.prompt(questions).then(function ({name, id, email, employeeRole, github, officeNumber, school}) {
 //     switch(employeeRole) {
 //         case "Engineer":
