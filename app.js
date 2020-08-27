@@ -8,6 +8,8 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
+
+
 const render = require("./lib/htmlRenderer");
 const employeeList = [];
 const employeeRender = async () => {
@@ -44,7 +46,7 @@ const addAnotherEmployee = () => {
         if (val.newEntry) {
             employeeRender();
         } else {
-            fs.writeFile("index.html", render(employeeList), (err) => {
+            fs.writeFile(outputPath, render(employeeList), (err) => {
                 if (err) throw err;
                 console.log('The html page has been rendered!');
             })
