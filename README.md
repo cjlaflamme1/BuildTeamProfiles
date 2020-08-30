@@ -23,7 +23,10 @@ Project Link: [Build Team Profiles](https://github.com/cjlaflamme1/BuildTeamProf
     
     
 ### Project Screenshot
-    
+![profilebuilder1](https://user-images.githubusercontent.com/64158642/91664890-1844bd80-eac0-11ea-9981-854b9fbd5494.jpg)
+![profilebuilder2](https://user-images.githubusercontent.com/64158642/91664892-1bd84480-eac0-11ea-8b3e-8dbe3c3b2870.jpg)
+![profilebuilder3](https://user-images.githubusercontent.com/64158642/91664895-1f6bcb80-eac0-11ea-8bbc-9c48cf927a33.jpg)
+
     
     
 ## Installation Instructions
