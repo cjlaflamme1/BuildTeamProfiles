@@ -13,7 +13,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const employeeList = [];
 const employeeRender = async () => {
-    console.log(employeeList.length);
     if (employeeList.length === 0) {
         await inquirer.prompt(initialQuestions).then(({ name, id, email, officeNumber}) => {
             employeeList.push(new Manager(name, id, email, officeNumber));
@@ -29,7 +28,6 @@ const employeeRender = async () => {
                     employeeList.push(new Intern(name, id, email, school));
                     break;
             }
-            console.log(employeeList);
         })
         addAnotherEmployee();
     }
@@ -42,7 +40,6 @@ const addAnotherEmployee = () => {
         name: "newEntry",
         default: true
     }).then(val => {
-        console.log(val);
         if (val.newEntry) {
             employeeRender();
         } else {
